@@ -6,27 +6,28 @@ de su inventario'''
 
 productos = {}
 flag = True
-#import os
 
-while flag is True:
-       #os.system('clear')
-    buscar = str(input('Nombre de producto encontrado: '))
-    if buscar not in productos:
-        nombre = (buscar)
+while flag:
+    buscar = input('Nombre de producto encontrado: ')
+    if buscar not in productos:# se agrega producto si este no se encuentra
+        nombre = buscar
         precio = float(input('Precio de el producto encontrado: $'))
         cantidad = int(input('Cantidad que encontraste: '))
         necesito = int(input('Cantidad que necesitas: '))
-        productos [nombre] = [precio,cantidad,necesito]
+        productos[nombre] = [precio, cantidad, necesito]
         print(productos)
-    elif buscar in productos:
+    else:# el producto ya se encunentra guardado
+        precio, cantidad, necesito = productos[buscar]
         contado = []
-        suma = 0
-        while contado != necesito:
-            encontrado = int(input('Digite la cantidadencontrada: '))
+        suma = cantidad
+        
+        print(f"Ya tienes registrado {cantidad} de {buscar}. Necesitas {necesito} en total.")
+        
+        while suma != necesito:# comparacion de cantidad existente vs necesaria
+            encontrado = int(input('Digite la cantidad encontrada: '))
             contado.append(encontrado)
-            print(contado)
-            for i in (contado):
-                suma = sum(contado)
-                print(suma)
-            if suma >= necesito:
-                print ('Has encontrado todos los productos necesarios')
+            suma += encontrado  
+            print(f"Llevas acumulado: {suma} de {necesito}")
+            
+        print(f'Has encontrado todos los productos necesarios de {buscar}')
+        
